@@ -16,9 +16,10 @@ public class TreeBuilder {
 			String currentRepresentation = nodesToString(orphans);
 			if(lastRepresentation.equals(currentRepresentation))
 					return null;
-			/*System.out.println(currentRepresentation);*/
+			System.out.println(currentRepresentation);
 			for(Expression expr : grammar)
 			{
+				
 				for(int i = 0; i <= orphans.size() - expr.rightSyntax.length(); i++)
 				{
 					List<Node<String>> orphansSubList = orphans.subList(i, expr.rightSyntax.length() + i);
@@ -33,6 +34,7 @@ public class TreeBuilder {
 						}
 						
 						tree.add(tree.indexOf(orphansSubList.get(orphansSubList.size()-1))+1,parent);
+						orphans = orphans(tree);
 					}
 				}
 			}
@@ -105,13 +107,14 @@ public class TreeBuilder {
 		grammar.add(new Expression("S","S*S"));
 		grammar.add(new Expression("S","S/S"));
 		grammar.add(new Expression("S","(S)"));
-		ArrayList<Node<String>> tree=TreeBuilder.analyze(grammar, "((x+y)ghgf/z)");
+		ArrayList<Node<String>> tree=TreeBuilder.analyze(grammar, "x+x+x+x+x+x");
 		if(tree==null)
 		{
 			System.out.println("Error");
 		}
 		else
 		{
+			System.out.println("Cadena Aceptada");
 			orphans(tree).get(0).print("",true);
 		}
 		
