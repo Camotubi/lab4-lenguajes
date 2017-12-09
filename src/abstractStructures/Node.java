@@ -37,14 +37,14 @@ public class Node<T> {
 		this.children = children;
 	}
 	
-	public void print(String prefix, boolean isTail) {
-        System.out.println(prefix + (isTail ? "└── " : "├── ") + data);
+	public String print(String prefix, boolean isTail) {
+        String out = (prefix + (isTail ? "└── " : "├── ") + data);
         for (int i = 0; i < children.size() - 1; i++) {
-            children.get(i).print(prefix + (isTail ? "    " : "│   "), false);
+            out +="\n"+children.get(i).print(prefix + (isTail ? "    " : "│   "), false);
         }
         if (children.size() > 0) {
-            children.get(children.size() - 1)
-                    .print(prefix + (isTail ?"    " : "│   "), true);
+           out+="\n"+ children.get(children.size() - 1).print(prefix + (isTail ?"    " : "│   "), true);
         }
+        return out;
     }
 }

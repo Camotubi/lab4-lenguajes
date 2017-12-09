@@ -95,29 +95,6 @@ public class TreeBuilder {
 			return true;
 		}
 	}
-	
-	public static void main(String args[])
-	{
-		ArrayList<Expression> grammar = new ArrayList<Expression>();
-		grammar.add(new Expression("S","x"));
-		grammar.add(new Expression("S","y"));
-		grammar.add(new Expression("S","z"));
-		grammar.add(new Expression("S","S+S"));
-		grammar.add(new Expression("S","S-S"));
-		grammar.add(new Expression("S","S*S"));
-		grammar.add(new Expression("S","S/S"));
-		grammar.add(new Expression("S","(S)"));
-		ArrayList<Node<String>> tree=TreeBuilder.analyze(grammar, "x+x+x+x+x+x");
-		if(tree==null)
-		{
-			System.out.println("Error");
-		}
-		else
-		{
-			System.out.println("Cadena Aceptada");
-			orphans(tree).get(0).print("",true);
-		}
-		
-	}
-
 }
+	
+	
